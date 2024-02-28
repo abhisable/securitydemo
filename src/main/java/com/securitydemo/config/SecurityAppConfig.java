@@ -20,24 +20,37 @@ public class SecurityAppConfig {
 
 	@Bean
 	public UserDetailsManager setUpUser() {
+		UserDetails userDetails1= User
+				.withUsername("abhishek")
+				.password("{noop}abhishek")//{noop} is password incoder here using this we can remove PaswordEncoder bean
+				.roles("admin","user")
+				.build();
+		
+		UserDetails userDetails2=User 
+				.withUsername("rahul")
+				.password("{noop}rahul")
+				.roles("user")
+				.build();
+		
+		return new InMemoryUserDetailsManager(userDetails1,userDetails2);
 
-		GrantedAuthority role1 = new SimpleGrantedAuthority("User");
-		GrantedAuthority role2 = new SimpleGrantedAuthority("Admin");
-		ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(role1);
-		authorities.add(role2);
-
-		UserDetails userDetails = new User("abhishek", "abhishek", authorities);
-
-		UserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-		userDetailsManager.createUser(userDetails);
-
-		return userDetailsManager;
+//		GrantedAuthority role1 = new SimpleGrantedAuthority("User");
+//		GrantedAuthority role2 = new SimpleGrantedAuthority("Admin");
+//		ArrayList<GrantedAuthority> authorities = new ArrayList<>();
+//		authorities.add(role1);
+//		authorities.add(role2);
+//
+//		UserDetails userDetails = new User("abhishek", "abhishek", authorities);
+//
+//		UserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
+//		userDetailsManager.createUser(userDetails);
+//
+//		return userDetailsManager;
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
-	}
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//		return NoOpPasswordEncoder.getInstance();
+//	}
 
 }
