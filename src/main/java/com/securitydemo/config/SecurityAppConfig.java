@@ -22,7 +22,7 @@ public class SecurityAppConfig {
 	public UserDetailsManager setUpUser() {
 		UserDetails userDetails1= User
 				.withUsername("abhishek")
-				.password("{noop}abhishek")//{noop} is password incoder here using this we can remove PaswordEncoder bean
+				.password("{bcrypt}$2a$10$JePFsJap8pEZJhp2SFyA5.kx7m3CIFGFllJwIEYmBRtuGbY6Ivvg6")//{noop} is password incoder here using this we can remove PaswordEncoder bean
 				.roles("admin","user")
 				.build();
 		
