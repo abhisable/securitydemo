@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -37,10 +38,17 @@ public class SecurityAppConfig {
 
 	@Bean
 	public SecurityFilterChain settingUpSecurityFilterChain() throws Exception {
-		httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
+		httpSecurity.authorizeHttpRequests().requestMatchers("/hi").authenticated();
+		httpSecurity.authorizeHttpRequests().requestMatchers("/bye").permitAll();
+		httpSecurity.authorizeHttpRequests().requestMatchers("/hello").denyAll();
 		httpSecurity.formLogin();
 		httpSecurity.httpBasic();
 		return httpSecurity.build();
+	}
+	
+	@Bean(name="mvcHandlerMappingIntrospector")
+	HandlerMappingIntrospector handlerMappingIntrospecor() {
+		return new HandlerMappingIntrospector();
 	}
 
 }

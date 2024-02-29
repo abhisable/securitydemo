@@ -8,11 +8,11 @@ public class HiController {
 
 	@GetMapping("/hi")
 	public String sayHi(){
-		return "hi";
+		return "hi everyone";
 	}
 	
 	@GetMapping("/hello")
 	public String sayHello() {
-		return "hello";
+		return "hello everyone";
 	}
 }
