@@ -3,6 +3,7 @@ package com.securitydemo.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -38,11 +39,18 @@ public class SecurityAppConfig {
 
 	@Bean
 	public SecurityFilterChain settingUpSecurityFilterChain() throws Exception {
-		httpSecurity.authorizeHttpRequests().requestMatchers("/hi").authenticated();
-		httpSecurity.authorizeHttpRequests().requestMatchers("/bye").permitAll();
-		httpSecurity.authorizeHttpRequests().requestMatchers("/hello").denyAll();
-		httpSecurity.formLogin();
-		httpSecurity.httpBasic();
+		
+//		httpSecurity.authorizeHttpRequests().requestMatchers("/hi","/hello").authenticated();
+//		httpSecurity.authorizeHttpRequests().requestMatchers("/bye").permitAll();
+		
+		httpSecurity.authorizeHttpRequests(customizer->{
+			customizer.requestMatchers("/hi","/hello").authenticated();
+			customizer.requestMatchers("/bye").permitAll();
+		});
+		
+		httpSecurity.formLogin(Customizer.withDefaults());
+		httpSecurity.httpBasic(Customizer.withDefaults());
+		
 		return httpSecurity.build();
 	}
 	

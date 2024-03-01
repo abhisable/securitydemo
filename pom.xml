@@ -11,7 +11,8 @@
 	<properties>
 		<maven.compiler.source>19</maven.compiler.source>
 		<maven.compiler.target>19</maven.compiler.target>
-		<spring.version>6.0.0</spring.version>
+		<spring.version>6.0.13</spring.version>
+		<spring.security.version>6.1.5</spring.security.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -51,14 +52,14 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 
 
