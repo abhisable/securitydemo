@@ -1,4 +1,6 @@
 com/securitydemo/controllers/HiController.class
 com/securitydemo/config/MyDsipatcherServer.class
+com/securitydemo/config/MySecurityIntitializer.class
+com/securitydemo/config/SecurityAppConfig.class
 com/securitydemo/controllers/ByeController.class
 com/securitydemo/config/MyAppConfig.class

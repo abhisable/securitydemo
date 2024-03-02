@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
@@ -42,8 +43,8 @@ public class SecurityAppConfig {
 		
 
 		httpSecurity.authorizeHttpRequests(customizer->{
-			customizer.requestMatchers("/hi","/hello").authenticated();
-			customizer.requestMatchers("/bye").permitAll();
+			customizer.requestMatchers(AntPathRequestMatcher.antMatcher("/hi"),AntPathRequestMatcher.antMatcher("/hello")).authenticated();
+			customizer.requestMatchers(AntPathRequestMatcher.antMatcher("/bye")).permitAll();
 		});
 		
 		httpSecurity.formLogin(Customizer.withDefaults());
@@ -52,9 +53,9 @@ public class SecurityAppConfig {
 		return httpSecurity.build();
 	}
 	
-	@Bean(name="mvcHandlerMappingIntrospector")
-	HandlerMappingIntrospector handlerMappingIntrospecor() {
-		return new HandlerMappingIntrospector();
-	}
+//	@Bean(name="mvcHandlerMappingIntrospector")
+//	HandlerMappingIntrospector handlerMappingIntrospecor() {
+//		return new HandlerMappingIntrospector();
+//	}
 
 }
