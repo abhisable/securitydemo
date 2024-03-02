@@ -40,9 +40,7 @@ public class SecurityAppConfig {
 	@Bean
 	public SecurityFilterChain settingUpSecurityFilterChain() throws Exception {
 		
-//		httpSecurity.authorizeHttpRequests().requestMatchers("/hi","/hello").authenticated();
-//		httpSecurity.authorizeHttpRequests().requestMatchers("/bye").permitAll();
-		
+
 		httpSecurity.authorizeHttpRequests(customizer->{
 			customizer.requestMatchers("/hi","/hello").authenticated();
 			customizer.requestMatchers("/bye").permitAll();
